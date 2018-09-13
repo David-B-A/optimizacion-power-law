@@ -1,4 +1,4 @@
-public class Rastrigin implements FuncionMultiDimDiff {
+public class Grienwank implements FuncionMultiDimDiff {
     public double pen1 = 5;
     public double pen2 = 8;
     public double pen3 = 500;
@@ -7,19 +7,21 @@ public class Rastrigin implements FuncionMultiDimDiff {
 
     public double f(double[] x) {
         // x debe tener n dimensiones
-        int A = 10;
-        double xmin = -5.12, xmax = 5.12;
         double sumatoria = 0;
+        double productoria = 1;
         for (int i = 0; i<x.length; i++){
-            sumatoria += (Math.pow(x[i],2) - A*Math.cos(2*Math.PI*x[i]));
+            sumatoria += Math.pow(x[i],2)/4000;
         }
-        return A*x.length - sumatoria;
+        for (int i = 0; i<x.length; i++){
+            productoria *= Math.cos(x[i]/Math.sqrt(i+1));
+        }
+        return sumatoria - productoria +1;
     }
 
     public boolean factible(double[] x) {
         boolean factible = true;
         for (int i = 0; i<x.length; i++){
-            if(x[i] > 5.12 || x[i] < -5.12)
+            if(x[i] > 600 || x[i] < -600)
                 factible = false;
         }
         return factible;
@@ -27,8 +29,15 @@ public class Rastrigin implements FuncionMultiDimDiff {
 
     public double[] gradiente (double[] x){
         double gradiente[] = new double[x.length];
+        double coefProductoria;
         for(int i=0; i< gradiente.length;i++){
-            gradiente[i] = 2*x[i] + 20*Math.PI*Math.sin(2*Math.PI*x[1]);
+            coefProductoria = 1;
+            for (int j = 0; j<gradiente.length; j++){
+                if(j != i){
+                    coefProductoria *= Math.cos(x[j]/Math.sqrt(j+1));
+                }
+            }
+            gradiente[i] = x[i]/2000 + coefProductoria*Math.sin(x[i]/Math.sqrt(i+1))/Math.sqrt(i+1);
         }
         return gradiente;
     }
