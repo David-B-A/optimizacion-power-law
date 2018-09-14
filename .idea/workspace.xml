@@ -2,8 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="604b79c0-ae76-4d03-9388-7c6b39bd2478" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ManejadorDeMatrices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Diff2Funcion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/DiffCuadratica.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/DiffCuadraticaPen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/DiffFuncion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Funcion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/FuncionMultiDim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gradient/FuncionMultiDim.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Gradient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Grienwank.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gradient/Grienwank.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Rastrigin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gradient/Rastrigin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Rosenbrock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gradient/Rosenbrock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Schuefel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gradient/Schuefel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FuncionMultiDimDiff2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FuncionMultiDimDiff2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManejadorDeMatrices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManejadorDeMatrices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Metodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Metodos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rastrigin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rastrigin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Rosenbrock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rosenbrock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Schuefel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Schuefel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,51 +76,67 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5102" />
+          <entry key="java" value="6336" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5102" />
+          <entry key="JAVA" value="6336" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="41" />
+          <entry key="java" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="41" />
+          <entry key="JAVA" value="46" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Metodos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1230">
-              <caret line="84" column="21" lean-forward="true" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Rosenbrock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
+            <state relative-caret-position="433">
+              <caret line="147" column="5" lean-forward="true" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+              <folding>
+                <element signature="method#gradienteNewton#0;class#Metodos#0" />
+                <element signature="method#gradienteDescendente#0;class#Metodos#0" />
+                <element signature="method#randPowerLaw#0;class#Metodos#0" />
+                <element signature="method#gradienteDescendenteMomentum#0;class#Metodos#0" />
+                <element signature="method#ascensoALaColina#0;class#Metodos#0" />
+                <element signature="method#ascensoALaColinaConPowerLaw#0;class#Metodos#0" />
+                <element signature="method#templadoSimulado#0;class#Metodos#0" />
+                <element signature="method#templadoSimuladoConPowerLaw#0;class#Metodos#0" />
+                <element signature="method#enfriamientoSigmoide#0;class#Metodos#0" />
+                <element signature="method#enfriamientoNewton#0;class#Metodos#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ManejadorDeMatrices.java">
+        <entry file="file://$PROJECT_DIR$/src/Rosenbrock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+              <folding>
+                <element signature="e#1616#1617#0" expanded="true" />
+                <element signature="e#1688#1689#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FuncionMultiDimDiff2.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+              <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -112,8 +144,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Schuefel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+            <state relative-caret-position="405">
+              <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+              <folding>
+                <element signature="e#1740#1741#0" expanded="true" />
+                <element signature="e#1808#1809#0" expanded="true" />
+                <element signature="e#1841#1842#0" expanded="true" />
+                <element signature="e#1897#1898#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rastrigin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="43" column="51" lean-forward="true" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
+              <folding>
+                <element signature="method#f#0;class#Rastrigin#0" />
+                <element signature="method#factible#0;class#Rastrigin#0" />
+                <element signature="method#gradiente#0;class#Rastrigin#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,6 +180,14 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>x1</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>x[i]</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -139,16 +199,16 @@
         <option value="$PROJECT_DIR$/src/Funcion.java" />
         <option value="$PROJECT_DIR$/src/DiffCuadratica.java" />
         <option value="$PROJECT_DIR$/src/FuncionMultiDimDiff.java" />
-        <option value="$PROJECT_DIR$/src/FuncionMultiDimDiff2.java" />
         <option value="$PROJECT_DIR$/src/DiffFuncion.java" />
         <option value="$PROJECT_DIR$/src/Gradient.java" />
         <option value="$PROJECT_DIR$/src/FuncionMultiDim.java" />
         <option value="$PROJECT_DIR$/src/Grienwank.java" />
-        <option value="$PROJECT_DIR$/src/Rastrigin.java" />
-        <option value="$PROJECT_DIR$/src/Schuefel.java" />
         <option value="$PROJECT_DIR$/src/Metodos.java" />
         <option value="$PROJECT_DIR$/src/ManejadorDeMatrices.java" />
         <option value="$PROJECT_DIR$/src/Rosenbrock.java" />
+        <option value="$PROJECT_DIR$/src/FuncionMultiDimDiff2.java" />
+        <option value="$PROJECT_DIR$/src/Rastrigin.java" />
+        <option value="$PROJECT_DIR$/src/Schuefel.java" />
       </list>
     </option>
   </component>
@@ -199,7 +259,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536875182242" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536898526326" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../MIDAS/MIDAS (1)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -223,8 +283,8 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Rosenbrock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Rosenbrock" />
+    <configuration name="Metodos" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Metodos" />
       <module name="Gradient" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -232,7 +292,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Rosenbrock" />
+        <item itemvalue="Application.Metodos" />
       </list>
     </recent_temporary>
   </component>
@@ -275,7 +335,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32817337" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32763976" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -309,13 +369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FuncionMultiDimDiff2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="54" lean-forward="true" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -361,20 +414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rastrigin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Schuefel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FuncionMultiDim.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -382,24 +421,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Metodos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="84" column="21" lean-forward="true" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ManejadorDeMatrices.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rosenbrock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
+        <state relative-caret-position="217">
+          <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <element signature="e#1616#1617#0" expanded="true" />
+            <element signature="e#1688#1689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FuncionMultiDimDiff2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rastrigin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="43" column="51" lean-forward="true" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
+          <folding>
+            <element signature="method#f#0;class#Rastrigin#0" />
+            <element signature="method#factible#0;class#Rastrigin#0" />
+            <element signature="method#gradiente#0;class#Rastrigin#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Schuefel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+          <folding>
+            <element signature="e#1740#1741#0" expanded="true" />
+            <element signature="e#1808#1809#0" expanded="true" />
+            <element signature="e#1841#1842#0" expanded="true" />
+            <element signature="e#1897#1898#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Metodos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="147" column="5" lean-forward="true" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+          <folding>
+            <element signature="method#gradienteNewton#0;class#Metodos#0" />
+            <element signature="method#gradienteDescendente#0;class#Metodos#0" />
+            <element signature="method#randPowerLaw#0;class#Metodos#0" />
+            <element signature="method#gradienteDescendenteMomentum#0;class#Metodos#0" />
+            <element signature="method#ascensoALaColina#0;class#Metodos#0" />
+            <element signature="method#ascensoALaColinaConPowerLaw#0;class#Metodos#0" />
+            <element signature="method#templadoSimulado#0;class#Metodos#0" />
+            <element signature="method#templadoSimuladoConPowerLaw#0;class#Metodos#0" />
+            <element signature="method#enfriamientoSigmoide#0;class#Metodos#0" />
+            <element signature="method#enfriamientoNewton#0;class#Metodos#0" />
+          </folding>
         </state>
       </provider>
     </entry>

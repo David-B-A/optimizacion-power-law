@@ -1,4 +1,4 @@
-public class Rastrigin implements FuncionMultiDimDiff {
+public class Rastrigin implements FuncionMultiDimDiff2 {
     public double pen1 = 5;
     public double pen2 = 8;
     public double pen3 = 500;
@@ -31,6 +31,23 @@ public class Rastrigin implements FuncionMultiDimDiff {
             gradiente[i] = 2*x[i] + 20*Math.PI*Math.sin(2*Math.PI*x[1]);
         }
         return gradiente;
+    }
+
+    public double[][] hessiano (double[] x){
+        double[][] hessiano = new double[x.length][x.length];
+        for(int i = 0;i<x.length;i++){
+            for(int j = 0;j<x.length;j++) {
+                hessiano[i][j] = 0;
+            }
+        }
+        for(int i = 0;i<x.length;i++){
+            hessiano[i][i] = 40*Math.pow(Math.PI,2)*Math.cos(2*Math.PI*x[i]) + 2;
+        }
+        return hessiano;
+    }
+
+    public double determinanteDelHessiano(double[] x){
+        return ManejadorDeMatrices.determinante(hessiano(x));
     }
 
     //Dado que se evidencia que la función no es convexa en todos sus puntos, no se determina el Hessiano, puesto que no va a usarse.
