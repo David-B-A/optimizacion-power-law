@@ -1,9 +1,8 @@
 public class Schuefel implements FuncionMultiDimDiff2 {
-    public double pen1 = 5;
-    public double pen2 = 8;
-    public double pen3 = 500;
+    public double pen[] = {5,5,5,5,5,5,5,5,5,5};
 
-
+    public double xmin = -500;
+    public double xmax = 500;
 
     public double f(double[] x) {
         // x debe tener n dimensiones
@@ -16,19 +15,29 @@ public class Schuefel implements FuncionMultiDimDiff2 {
         return A*x.length - sumatoria;
     }
 
-    public boolean factible(double[] x) {
-        boolean factible = true;
+    public double fConPenalizacion(double[] x) {
+        // x debe tener n dimensiones
+        int A = 10;
+        double xmin = -5.12, xmax = 5.12;
+        double sumatoria = 0;
         for (int i = 0; i<x.length; i++){
-            if(x[i] > 500 || x[i] < -500)
-                factible = false;
+            sumatoria += x[i]*Math.sin(Math.sqrt(Math.abs(x[i]))) + pen[i]*((x[i]<xmin) ? (xmin - x[i]) : ((xmax < x[i]) ? (x[i]-xmax) : 0));
         }
-        return factible;
+        return A*x.length - sumatoria;
+    }
+
+    public boolean factible(double[] x) {
+        for (int i = 0; i<x.length; i++){
+            if(x[i] > xmax || x[i] < xmin)
+                return false;
+        }
+        return true;
     }
 
     public double[] gradiente (double[] x){
         double gradiente[] = new double[x.length];
         for(int i=0; i< gradiente.length;i++){
-            gradiente[i] = - Math.sin(Math.sqrt(Math.abs(x[i]))) - (x[1]*Math.cos(Math.sqrt(Math.abs(x[i])))*sign(x[i]))/(2*Math.sqrt(Math.abs(x[i])));
+            gradiente[i] = - Math.sin(Math.sqrt(Math.abs(x[i]))) - (x[1]*Math.cos(Math.sqrt(Math.abs(x[i])))*sign(x[i]))/(2*Math.sqrt(Math.abs(x[i]))) + pen[i]*((x[i]<xmin) ? -1 : ((xmax < x[i]) ? 1 : 0));
         }
         return gradiente;
     }

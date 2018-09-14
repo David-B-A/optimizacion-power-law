@@ -1,9 +1,8 @@
 public class Grienwank implements FuncionMultiDimDiff {
-    public double pen1 = 5;
-    public double pen2 = 8;
-    public double pen3 = 500;
+    public double pen[] = {5,5,5,5,5,5,5,5,5,5};
 
-
+    public double xmin = -600;
+    public double xmax = 600;
 
     public double f(double[] x) {
         // x debe tener n dimensiones
@@ -18,13 +17,25 @@ public class Grienwank implements FuncionMultiDimDiff {
         return sumatoria - productoria +1;
     }
 
-    public boolean factible(double[] x) {
-        boolean factible = true;
+    public double fConPenalizacion(double[] x) {
+        // x debe tener n dimensiones
+        double sumatoria = 0;
+        double productoria = 1;
         for (int i = 0; i<x.length; i++){
-            if(x[i] > 600 || x[i] < -600)
-                factible = false;
+            sumatoria += Math.pow(x[i],2)/4000 + pen[i]*((x[i]<xmin) ? (xmin - x[i]) : ((xmax < x[i]) ? (x[i]-xmax) : 0));
         }
-        return factible;
+        for (int i = 0; i<x.length; i++){
+            productoria *= Math.cos(x[i]/Math.sqrt(i+1));
+        }
+        return sumatoria - productoria +1;
+    }
+
+    public boolean factible(double[] x) {
+        for (int i = 0; i<x.length; i++){
+            if(x[i] > xmax || x[i] < xmin)
+                return false;
+        }
+        return true;
     }
 
     public double[] gradiente (double[] x){
@@ -37,7 +48,7 @@ public class Grienwank implements FuncionMultiDimDiff {
                     coefProductoria *= Math.cos(x[j]/Math.sqrt(j+1));
                 }
             }
-            gradiente[i] = x[i]/2000 + coefProductoria*Math.sin(x[i]/Math.sqrt(i+1))/Math.sqrt(i+1);
+            gradiente[i] = x[i]/2000 + coefProductoria*Math.sin(x[i]/Math.sqrt(i+1))/Math.sqrt(i+1) + pen[i]*((x[i]<xmin) ? -1 : ((xmax < x[i]) ? 1 : 0));
         }
         return gradiente;
     }

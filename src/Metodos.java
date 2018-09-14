@@ -147,6 +147,22 @@ public class Metodos {
         return Math.exp(-t * r / N);
     }
 
+
+
     public static void main(String[] args) {
+        int experimentos = 100;
+        int iteraciones = 1000;
+        //Para Rastrigin
+        double[][] resultadosRastriginAscensoPL = new  double[experimentos][iteraciones];
+
+        for(int i = 0; i < experimentos;i++){
+            Metodos.r = new Random();
+            Rastrigin rastrigin = new Rastrigin();
+            double x[] = new double[2];
+
+            for(int j =0; j< iteraciones; j++){
+                resultadosRastriginAscensoPL[i][j] = 0;
+            }
+        }
     }
 }

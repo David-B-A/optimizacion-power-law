@@ -1,9 +1,8 @@
 public class Rosenbrock implements FuncionMultiDimDiff2 {
-    public double pen1 = 5;
-    public double pen2 = 8;
-    public double pen3 = 500;
+    public double pen[] = {5,5,5,5,5,5,5,5,5,5};
 
-
+    public double xmin = -5;
+    public double xmax = 10;
 
     public double f(double[] x) {
         // x debe tener n dimensiones
@@ -14,21 +13,30 @@ public class Rosenbrock implements FuncionMultiDimDiff2 {
         return sumatoria;
     }
 
-    public boolean factible(double[] x) {
-        boolean factible = true;
-        for (int i = 0; i<x.length; i++){
-            if(x[i] > 10 || x[i] < -5)
-                factible = false;
+    public double fConPenalizacion(double[] x) {
+        // x debe tener n dimensiones
+        double sumatoria = 0;
+        for (int i = 0; i<x.length-1; i++){
+            sumatoria += 100*Math.pow((x[i+1] - Math.pow(x[i],2)),2) + Math.pow((x[i]-1),2) + pen[i]*((x[i]<xmin) ? (xmin - x[i]) : ((xmax < x[i]) ? (x[i]-xmax) : 0));
         }
-        return factible;
+        sumatoria += pen[x.length-1]*((x[x.length-1]<xmin) ? (xmin - x[x.length-1]) : ((xmax < x[x.length-1]) ? (x[x.length-1]-xmax) : 0));
+        return sumatoria;
+    }
+
+    public boolean factible(double[] x) {
+        for (int i = 0; i<x.length; i++){
+            if(x[i] > xmax || x[i] < xmin)
+                return false;
+        }
+        return true;
     }
 
     public double[] gradiente (double[] x){
         double gradiente[] = new double[x.length];
         for(int i=0; i< gradiente.length - 1;i++){
-            gradiente[i] = 2*x[i] - 400*x[i]*(- Math.pow(x[i],2) + x[i+1]) - 2;
+            gradiente[i] = 2*x[i] - 400*x[i]*(- Math.pow(x[i],2) + x[i+1]) - 2 + pen[i]*((x[i]<xmin) ? -1 : ((xmax < x[i]) ? 1 : 0));
         }
-        gradiente[gradiente.length - 1] = - 200*Math.pow(x[x.length-2],2) + 200*x[x.length - 1];
+        gradiente[gradiente.length - 1] = - 200*Math.pow(x[x.length-2],2) + 200*x[x.length - 1] + pen[gradiente.length - 1]*((x[gradiente.length - 1]<xmin) ? -1 : ((xmax < x[gradiente.length - 1]) ? 1 : 0));
         return gradiente;
     }
 
