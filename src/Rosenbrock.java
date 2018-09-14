@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Rosenbrock implements FuncionMultiDimDiff2 {
     public double pen[] = {5,5,5,5,5,5,5,5,5,5};
 
@@ -21,6 +23,13 @@ public class Rosenbrock implements FuncionMultiDimDiff2 {
         }
         sumatoria += pen[x.length-1]*((x[x.length-1]<xmin) ? (xmin - x[x.length-1]) : ((xmax < x[x.length-1]) ? (x[x.length-1]-xmax) : 0));
         return sumatoria;
+    }
+
+    public void inicializar(double[] x){
+        Random r = new Random();
+        for(int i= 0;i<x.length;i++){
+            x[i] = r.nextDouble() * (xmax-xmin) + xmin;
+        }
     }
 
     public boolean factible(double[] x) {

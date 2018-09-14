@@ -65,7 +65,7 @@ public class Metodos {
             y[i] += ran;
         }
 
-        if (f.f(x) < f.f(y)) {
+        if (f.f(x) < f.f(y) || !f.factible(y)) {
             return x;
         }
 
@@ -82,7 +82,7 @@ public class Metodos {
             y[i] += ran;
         }
 
-        if (f.f(x) < f.f(y)) {
+        if (f.f(x) < f.f(y)  || !f.factible(y)) {
             return x;
         }
 
@@ -102,13 +102,13 @@ public class Metodos {
         double fx = f.f(x);
         double fy = f.f(y);
 
-        if (fx < fy) {
-            return x;
-        } else if(Metodos.rTemplado.nextDouble() < Math.exp((fy-fx)/T)){
-            return x;
+        if (fy <= fx  && f.factible(y)) {
+            return y;
+        } else if(Metodos.rTemplado.nextDouble() < Math.exp((fy-fx)/T) &&  f.factible(y)){
+            return y;
         }
 
-        return y;
+        return x;
     }
 
     public static double[] templadoSimuladoConPowerLaw(FuncionMultiDim f, double[] x, double T){
@@ -124,13 +124,13 @@ public class Metodos {
         double fx = f.f(x);
         double fy = f.f(y);
 
-        if (fx < fy) {
-            return x;
-        } else if(Metodos.rTemplado.nextDouble() < Math.exp((fy-fx)/T)){
-            return x;
+        if (fy <= fx  && f.factible(y)) {
+            return y;
+        } else if(Metodos.rTemplado.nextDouble() < Math.exp((fy-fx)/T) &&  f.factible(y)){
+            return y;
         }
 
-        return y;
+        return x;
     }
 
     public static double enfriamientoSigmoide(double t, double N, double r){
@@ -158,11 +158,13 @@ public class Metodos {
         for(int i = 0; i < experimentos;i++){
             Metodos.r = new Random();
             Rastrigin rastrigin = new Rastrigin();
-            double x[] = new double[2];
-
+            double[] x = new double[2];
+            rastrigin.inicializar(x);
             for(int j =0; j< iteraciones; j++){
-                resultadosRastriginAscensoPL[i][j] = 0;
+                x = ascensoALaColina(rastrigin, x);
+                resultadosRastriginAscensoPL [i][j] = rastrigin.f(x);
             }
+            System.out.println("Experimento: "+ i);
         }
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Rastrigin implements FuncionMultiDimDiff2 {
     public double pen[] = {5,5,5,5,5,5,5,5,5,5};
 
@@ -24,6 +26,13 @@ public class Rastrigin implements FuncionMultiDimDiff2 {
             sumatoria += (Math.pow(x[i],2) - A*Math.cos(2*Math.PI*x[i])) + pen[i]*((x[i]<xmin) ? (xmin - x[i]) : ((xmax < x[i]) ? (x[i]-xmax) : 0));
         }
         return A*x.length - sumatoria;
+    }
+
+    public void inicializar(double[] x){
+        Random r = new Random();
+        for(int i= 0;i<x.length;i++){
+            x[i] = r.nextDouble() * (xmax-xmin) + xmin;
+        }
     }
 
     public boolean factible(double[] x) {

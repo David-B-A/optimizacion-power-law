@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Grienwank implements FuncionMultiDimDiff {
     public double pen[] = {5,5,5,5,5,5,5,5,5,5};
 
@@ -28,6 +30,13 @@ public class Grienwank implements FuncionMultiDimDiff {
             productoria *= Math.cos(x[i]/Math.sqrt(i+1));
         }
         return sumatoria - productoria +1;
+    }
+
+    public void inicializar(double[] x){
+        Random r = new Random();
+        for(int i= 0;i<x.length;i++){
+            x[i] = r.nextDouble() * (xmax-xmin) + xmin;
+        }
     }
 
     public boolean factible(double[] x) {
