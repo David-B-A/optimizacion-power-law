@@ -1,31 +1,27 @@
 import java.util.Random;
 
-public class Rastrigin implements FuncionMultiDimDiff2 {
+public class Cuadratica implements FuncionMultiDimDiff2 {
     public double pen[] = {5,5,5,5,5,5,5,5,5,5};
 
-    public double xmin = -5.12;
-    public double xmax = 5.12;
+    public double xmin = -5;
+    public double xmax = 10;
 
     public double f(double[] x) {
         // x debe tener n dimensiones
-        int A = 10;
-        double xmin = -5.12, xmax = 5.12;
         double sumatoria = 0;
         for (int i = 0; i<x.length; i++){
-            sumatoria += (Math.pow(x[i],2) - A*Math.cos(2*Math.PI*x[i]));
+            sumatoria += Math.pow(x[i],2);
         }
-        return A*x.length + sumatoria;
+        return sumatoria;
     }
 
     public double fConPenalizacion(double[] x) {
         // x debe tener n dimensiones
-        int A = 10;
-        double xmin = -5.12, xmax = 5.12;
         double sumatoria = 0;
         for (int i = 0; i<x.length; i++){
-            sumatoria += (Math.pow(x[i],2) - A*Math.cos(2*Math.PI*x[i])) + pen[i]*((x[i]<xmin) ? (xmin - x[i]) : ((xmax < x[i]) ? (x[i]-xmax) : 0));
+            sumatoria += Math.pow(x[i],2) + pen[i]*((x[i]<xmin) ? (xmin - x[i]) : ((xmax < x[i]) ? (x[i]-xmax) : 0));
         }
-        return A*x.length + sumatoria;
+        return sumatoria;
     }
 
     public void inicializar(double[] x){
@@ -46,7 +42,7 @@ public class Rastrigin implements FuncionMultiDimDiff2 {
     public double[] gradiente (double[] x){
         double gradiente[] = new double[x.length];
         for(int i=0; i< gradiente.length;i++){
-            gradiente[i] = 2*x[i] + 20*Math.PI*Math.sin(2*Math.PI*x[1]) + pen[i]*((x[i]<xmin) ? -1 : ((xmax < x[i]) ? 1 : 0));
+            gradiente[i] = 2*x[i] + pen[i]*((x[i]<xmin) ? -1 : ((xmax < x[i]) ? 1 : 0));
         }
         return gradiente;
     }
@@ -59,7 +55,7 @@ public class Rastrigin implements FuncionMultiDimDiff2 {
             }
         }
         for(int i = 0;i<x.length;i++){
-            hessiano[i][i] = 40*Math.pow(Math.PI,2)*Math.cos(2*Math.PI*x[i]) + 2;
+            hessiano[i][i] = 2;
         }
         return hessiano;
     }
@@ -67,6 +63,4 @@ public class Rastrigin implements FuncionMultiDimDiff2 {
     public double determinanteDelHessiano(double[] x){
         return ManejadorDeMatrices.determinante(hessiano(x));
     }
-
-    //Dado que se evidencia que la función no es convexa en todos sus puntos, no se determina el Hessiano, puesto que no va a usarse.
 }

@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="604b79c0-ae76-4d03-9388-7c6b39bd2478" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Cuadratica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FuncionMultiDim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FuncionMultiDim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FuncionMultiDimDiff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FuncionMultiDimDiff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Grienwank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Grienwank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Metodos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Gradient/Rastrigin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Gradient/Rastrigin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Metodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Metodos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Rastrigin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rastrigin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rosenbrock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rosenbrock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Schuefel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Schuefel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,101 +64,57 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="7598" />
+          <entry key="java" value="9870" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="7598" />
+          <entry key="JAVA" value="9870" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="50" />
+          <entry key="java" value="54" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="50" />
+          <entry key="JAVA" value="54" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rosenbrock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="e#1616#1617#0" expanded="true" />
-                <element signature="e#1688#1689#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Metodos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="128" column="68" lean-forward="true" selection-start-line="128" selection-start-column="68" selection-end-line="128" selection-end-column="68" />
+            <state relative-caret-position="44">
+              <caret line="602" column="29" selection-start-line="602" selection-start-column="29" selection-end-line="602" selection-end-column="29" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#gradienteNewton#0;class#Metodos#0" />
                 <element signature="method#gradienteDescendente#0;class#Metodos#0" />
                 <element signature="method#randPowerLaw#0;class#Metodos#0" />
                 <element signature="method#gradienteDescendenteConMomentum#0;class#Metodos#0" />
                 <element signature="method#ascensoALaColina#0;class#Metodos#0" />
                 <element signature="method#ascensoALaColinaConPowerLaw#0;class#Metodos#0" />
+                <element signature="method#templadoSimulado#0;class#Metodos#0" />
+                <element signature="method#templadoSimuladoConPowerLaw#0;class#Metodos#0" />
                 <element signature="method#enfriamientoSigmoide#0;class#Metodos#0" />
                 <element signature="method#enfriamientoNewton#0;class#Metodos#0" />
+                <element signature="method#experimentoGradienteNewton#0;class#Metodos#0" />
+                <element signature="method#experimentoGradienteDescendente#0;class#Metodos#0" />
+                <element signature="method#experimentoGradienteDescendenteConMomentum#0;class#Metodos#0" />
+                <element signature="method#experimentoAscensoALaColina#0;class#Metodos#0" />
+                <element signature="method#experimentoAscensoALaColinaConPowerLaw#0;class#Metodos#0" />
+                <element signature="method#experimentoTempladoSimuladoSigmoide#0;class#Metodos#0" />
+                <element signature="method#experimentoTempladoSimuladoLineal#0;class#Metodos#0" />
+                <element signature="method#experimentoTempladoSimuladoNewton#0;class#Metodos#0" />
+                <element signature="method#experimentoTempladoSimuladoPLSigmoide#0;class#Metodos#0" />
+                <element signature="method#experimentoTempladoSimuladoPLLineal#0;class#Metodos#0" />
+                <element signature="method#experimentoTempladoSimuladoPLNewton#0;class#Metodos#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Grienwank.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Schuefel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-              <folding>
-                <element signature="e#1740#1741#0" expanded="true" />
-                <element signature="e#1808#1809#0" expanded="true" />
-                <element signature="e#1841#1842#0" expanded="true" />
-                <element signature="e#1897#1898#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rastrigin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
-              <folding>
-                <element signature="method#hessiano#0;class#Rastrigin#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FuncionMultiDim.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -178,9 +132,14 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>x1</find>
+      <find>resultadosRastriginAscensoPL</find>
+      <find>cuadratica</find>
     </findStrings>
     <replaceStrings>
       <replace>x[i]</replace>
+      <replace>resultados</replace>
+      <replace>f</replace>
+      <replace>funcion</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -198,11 +157,12 @@
         <option value="$PROJECT_DIR$/src/ManejadorDeMatrices.java" />
         <option value="$PROJECT_DIR$/src/FuncionMultiDimDiff2.java" />
         <option value="$PROJECT_DIR$/src/FuncionMultiDimDiff.java" />
-        <option value="$PROJECT_DIR$/src/Rastrigin.java" />
         <option value="$PROJECT_DIR$/src/Schuefel.java" />
         <option value="$PROJECT_DIR$/src/Grienwank.java" />
         <option value="$PROJECT_DIR$/src/Rosenbrock.java" />
         <option value="$PROJECT_DIR$/src/FuncionMultiDim.java" />
+        <option value="$PROJECT_DIR$/src/Rastrigin.java" />
+        <option value="$PROJECT_DIR$/src/Cuadratica.java" />
         <option value="$PROJECT_DIR$/src/Metodos.java" />
       </list>
     </option>
@@ -254,7 +214,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536903911367" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536913406111" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../MIDAS/MIDAS (1)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -416,32 +376,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Schuefel.java">
+    <entry file="file://$PROJECT_DIR$/src/FuncionMultiDim.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#1740#1741#0" expanded="true" />
-            <element signature="e#1808#1809#0" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-            <element signature="e#1897#1898#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="45">
+          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rastrigin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="398">
+          <caret line="53" column="4" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="64" selection-end-column="5" />
           <folding>
             <element signature="method#hessiano#0;class#Rastrigin#0" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cuadratica.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Schuefel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Grienwank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rosenbrock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
+        <state relative-caret-position="495">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="e#1616#1617#0" expanded="true" />
@@ -450,33 +425,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FuncionMultiDim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Grienwank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Metodos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="128" column="68" lean-forward="true" selection-start-line="128" selection-start-column="68" selection-end-line="128" selection-end-column="68" />
+        <state relative-caret-position="44">
+          <caret line="602" column="29" selection-start-line="602" selection-start-column="29" selection-end-line="602" selection-end-column="29" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#gradienteNewton#0;class#Metodos#0" />
             <element signature="method#gradienteDescendente#0;class#Metodos#0" />
             <element signature="method#randPowerLaw#0;class#Metodos#0" />
             <element signature="method#gradienteDescendenteConMomentum#0;class#Metodos#0" />
             <element signature="method#ascensoALaColina#0;class#Metodos#0" />
             <element signature="method#ascensoALaColinaConPowerLaw#0;class#Metodos#0" />
+            <element signature="method#templadoSimulado#0;class#Metodos#0" />
+            <element signature="method#templadoSimuladoConPowerLaw#0;class#Metodos#0" />
             <element signature="method#enfriamientoSigmoide#0;class#Metodos#0" />
             <element signature="method#enfriamientoNewton#0;class#Metodos#0" />
+            <element signature="method#experimentoGradienteNewton#0;class#Metodos#0" />
+            <element signature="method#experimentoGradienteDescendente#0;class#Metodos#0" />
+            <element signature="method#experimentoGradienteDescendenteConMomentum#0;class#Metodos#0" />
+            <element signature="method#experimentoAscensoALaColina#0;class#Metodos#0" />
+            <element signature="method#experimentoAscensoALaColinaConPowerLaw#0;class#Metodos#0" />
+            <element signature="method#experimentoTempladoSimuladoSigmoide#0;class#Metodos#0" />
+            <element signature="method#experimentoTempladoSimuladoLineal#0;class#Metodos#0" />
+            <element signature="method#experimentoTempladoSimuladoNewton#0;class#Metodos#0" />
+            <element signature="method#experimentoTempladoSimuladoPLSigmoide#0;class#Metodos#0" />
+            <element signature="method#experimentoTempladoSimuladoPLLineal#0;class#Metodos#0" />
+            <element signature="method#experimentoTempladoSimuladoPLNewton#0;class#Metodos#0" />
           </folding>
         </state>
       </provider>

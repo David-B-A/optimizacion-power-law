@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Random;
 
 public class Metodos {
@@ -149,22 +151,494 @@ public class Metodos {
 
 
 
+    public static void experimentoGradienteNewton(FuncionMultiDimDiff2 f, int experimentos, int iteraciones, int dimensiones, String archivo){
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                for (int j = 0; j < iteraciones; j++) {
+                    x = gradienteNewton(f, x);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoGradienteDescendente(FuncionMultiDimDiff f, int experimentos, int iteraciones, int dimensiones, String archivo){
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                for (int j = 0; j < iteraciones; j++) {
+                    x = gradienteDescendente(f, x);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoGradienteDescendenteConMomentum(FuncionMultiDimDiff f, int experimentos, int iteraciones, int dimensiones, String archivo){
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                double[] delta = new double[dimensiones];
+                for(int d = 0;d<dimensiones;d++){
+                    delta[d] = 0;
+                }
+                for (int j = 0; j < iteraciones; j++) {
+                    x = gradienteDescendenteConMomentum(f, delta, x);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoAscensoALaColina(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                for (int j = 0; j < iteraciones; j++) {
+                    x = ascensoALaColina(f, x);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoAscensoALaColinaConPowerLaw(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                for (int j = 0; j < iteraciones; j++) {
+                    x = ascensoALaColinaConPowerLaw(f, x);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoTempladoSimuladoSigmoide(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+        //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                double T = 1;
+                for (int j = 0; j < iteraciones; j++) {
+                    T = enfriamientoSigmoide(j,iteraciones,coeficienteDeTemperatura);
+                    x = templadoSimulado(f, x, T);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoTempladoSimuladoLineal(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+        //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                double T = 1;
+                for (int j = 0; j < iteraciones; j++) {
+                    T = enfriamientoLineal(j,iteraciones);
+                    x = templadoSimulado(f, x, T);
+                    resultados[i][j] = f.f(x);
+                }
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoTempladoSimuladoNewton(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+        //sugerido: r = log(N) para que la temperatura de la última iteración sea 1/N.
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                double T = 1;
+                for (int j = 0; j < iteraciones; j++) {
+                    T = enfriamientoNewton(j,iteraciones,coeficienteDeTemperatura);
+                    x = templadoSimulado(f, x, T);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+
+    public static void experimentoTempladoSimuladoPLSigmoide(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+        //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                double T = 1;
+                for (int j = 0; j < iteraciones; j++) {
+                    T = enfriamientoSigmoide(j,iteraciones,coeficienteDeTemperatura);
+                    x = templadoSimuladoConPowerLaw(f, x, T);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoTempladoSimuladoPLLineal(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+        //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                double T = 1;
+                for (int j = 0; j < iteraciones; j++) {
+                    T = enfriamientoLineal(j,iteraciones);
+                    x = templadoSimuladoConPowerLaw(f, x, T);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+    public static void experimentoTempladoSimuladoPLNewton(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+        //sugerido: r = log(N) para que la temperatura de la última iteración sea 1/N.
+        try {
+            double[][] resultados = new double[experimentos][iteraciones];
+            File archivoresultados = new File(archivo);
+            if (archivoresultados.exists()) {
+                archivoresultados.delete();
+                archivoresultados = new File(archivo);
+            }
+            FileWriter writerresultados = new FileWriter(archivoresultados, true);
+
+
+            for (int i = 0; i < experimentos; i++) {
+                Metodos.r = new Random();
+                double[] x = new double[dimensiones];
+                f.inicializar(x);
+                double T = 1;
+                for (int j = 0; j < iteraciones; j++) {
+                    T = enfriamientoNewton(j,iteraciones,coeficienteDeTemperatura);
+                    x = templadoSimuladoConPowerLaw(f, x, T);
+                    resultados[i][j] = f.f(x);
+                }
+
+
+            }
+            for (int i = 0; i < experimentos; i++) {
+                writerresultados.write("Experimento_" + (i+1) + ";");
+            }
+            writerresultados.write("\n");
+            for (int j = 0; j < iteraciones; j++) {
+                for (int i = 0; i < experimentos; i++) {
+                    writerresultados.write(resultados[i][j] + ";");
+                }
+                writerresultados.write("\n");
+            }
+        } catch (Exception e){
+            System.out.println("Imposible realizar operación para " +archivo+" - Exception: "+ e.getMessage());
+        }
+    }
+
+
+    public static void conjuntoDeExperimentos(FuncionMultiDimDiff funcion, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperaturaSigmoide, double coeficienteDeTemperaturaNewton, String nombreFuncion){
+
+        System.out.println("Ejecutando: " + nombreFuncion);
+
+        experimentoGradienteDescendente(funcion,experimentos,iteraciones,dimensiones,"resultadosGradienteDesc"+nombreFuncion+".txt");
+        experimentoGradienteDescendenteConMomentum(funcion,experimentos,iteraciones,dimensiones,"resultadosGradienteDescMomentum"+nombreFuncion+".txt");
+        experimentoAscensoALaColina(funcion,experimentos,iteraciones,dimensiones,"resultadosAscensoColina"+nombreFuncion+".txt");
+        experimentoAscensoALaColinaConPowerLaw(funcion,experimentos,iteraciones,dimensiones,"AscensoColinaPL"+nombreFuncion+".txt");
+
+        experimentoTempladoSimuladoSigmoide(funcion,experimentos,iteraciones,dimensiones,0.2,"resultadosTSSigmoide"+nombreFuncion+".txt");
+        experimentoTempladoSimuladoLineal(funcion,experimentos,iteraciones,dimensiones,"resultadosTSLineal"+nombreFuncion+".txt");
+        experimentoTempladoSimuladoNewton(funcion,experimentos,iteraciones,dimensiones,Math.log(iteraciones),"resultadosTSNewton"+nombreFuncion+".txt");
+        experimentoTempladoSimuladoPLSigmoide(funcion,experimentos,iteraciones,dimensiones,0.2,"resultadosTSPLSigmoide"+nombreFuncion+".txt");
+        experimentoTempladoSimuladoPLLineal(funcion,experimentos,iteraciones,dimensiones,"resultadosTSPLLineal"+nombreFuncion+".txt");
+        experimentoTempladoSimuladoPLNewton(funcion,experimentos,iteraciones,dimensiones,Math.log(iteraciones),"resultadosTSPLNewton"+nombreFuncion+".txt");
+    }
+
     public static void main(String[] args) {
+
         int experimentos = 100;
         int iteraciones = 1000;
-        //Para Rastrigin
-        double[][] resultadosRastriginAscensoPL = new  double[experimentos][iteraciones];
+        int dimensiones = 2;
 
-        for(int i = 0; i < experimentos;i++){
-            Metodos.r = new Random();
-            Rastrigin rastrigin = new Rastrigin();
-            double[] x = new double[2];
-            rastrigin.inicializar(x);
-            for(int j =0; j< iteraciones; j++){
-                x = ascensoALaColina(rastrigin, x);
-                resultadosRastriginAscensoPL [i][j] = rastrigin.f(x);
-            }
-            System.out.println("Experimento: "+ i);
-        }
+        Cuadratica cuadratica = new Cuadratica();
+        experimentoGradienteNewton(cuadratica, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Cuadratica" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(cuadratica,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Cuadratica" + dimensiones + "d");
+
+        Rastrigin rastrigin = new Rastrigin();
+        experimentoGradienteNewton(rastrigin, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rastrigin" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(rastrigin,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rastrigin" + dimensiones + "d");
+
+        Grienwank grienwank = new Grienwank();
+        conjuntoDeExperimentos(grienwank,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Grienwank" + dimensiones + "d");
+
+        Schuefel schuefel = new Schuefel();
+        experimentoGradienteNewton(schuefel, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Schuefel" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(schuefel,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Schuefel" + dimensiones + "d");
+
+        Rosenbrock rosenbrock = new Rosenbrock();
+        experimentoGradienteNewton(rosenbrock, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rosenbrock" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(rosenbrock,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rosenbrock" + dimensiones + "d");
+
+        experimentos = 30;
+        iteraciones = 10000;
+        dimensiones = 10;
+
+        experimentoGradienteNewton(cuadratica, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Cuadratica" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(cuadratica,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Cuadratica" + dimensiones + "d");
+
+        experimentoGradienteNewton(rastrigin, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rastrigin" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(rastrigin,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rastrigin" + dimensiones + "d");
+
+        conjuntoDeExperimentos(grienwank,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Grienwank" + dimensiones + "d");
+
+        experimentoGradienteNewton(schuefel, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Schuefel" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(schuefel,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Schuefel" + dimensiones + "d");
+
+        experimentoGradienteNewton(rosenbrock, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rosenbrock" + dimensiones + "d" + ".txt");
+        conjuntoDeExperimentos(rosenbrock,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rosenbrock" + dimensiones + "d");
     }
 }
