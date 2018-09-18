@@ -1,7 +1,7 @@
 import java.util.Random;
 
-public class Schuefel implements FuncionMultiDimDiff2 {
-    public double pen[] = {5,5,5,5,5,5,5,5,5,5};
+public class Schwefel implements FuncionMultiDimDiff2 {
+    public double pen[] = {80,80,80,80,80,80,80,80,80,80};
 
     public double xmin = -500;
     public double xmax = 500;

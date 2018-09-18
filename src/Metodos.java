@@ -20,9 +20,8 @@ public class Metodos {
         return y;
     }
 
-    public static double[] gradienteDescendente(FuncionMultiDimDiff f, double[] x) {
+    public static double[] gradienteDescendente(FuncionMultiDimDiff f, double[] x, double h) {
         double[] grad = f.gradiente(x);
-        double h = 0.4; //Tamaño del paso
 
         double[] y = x.clone();
 
@@ -39,26 +38,23 @@ public class Metodos {
 
     public static double randPowerLaw(double alpha) {
         double n = Metodos.r.nextDouble()*2;
-        return n>=1?(1-(n-1))*Math.exp(1/(1-alpha)):-(1-n)*Math.exp(1/(1-alpha));
+        return n>=1?Math.pow((2-n),(1/(1-alpha))):-Math.pow((n),(1/(1-alpha)));
     }
 
-    public static double[] gradienteDescendenteConMomentum(FuncionMultiDimDiff f, double[] delta, double[] x) {
+    public static double[] gradienteDescendenteConMomentum(FuncionMultiDimDiff f, double[] delta, double[] x, double h, double m) {
         double[] grad = f.gradiente(x);
-        double alpha = 0.1; //Tamaño del paso (antes del momentum)
-        double m = 0.8; //Momentum
 
         double[] y = x.clone();
 
         for(int i = 0; i < y.length; i++) {
-            delta[i] = m * delta[i] - grad[i] * alpha;
+            delta[i] = m * delta[i] - grad[i] * h;
             y[i] += delta[i];
         }
 
         return y;
     }
 
-    public static double[] ascensoALaColina(FuncionMultiDim f, double[] x) {
-        double sigma = .2;
+    public static double[] ascensoALaColina(FuncionMultiDim f, double[] x, double sigma) {
 
         double[] y = x.clone();
 
@@ -74,8 +70,7 @@ public class Metodos {
         return y;
     }
 
-    public static double[] ascensoALaColinaConPowerLaw(FuncionMultiDim f, double[] x) {
-        double alpha = 2;
+    public static double[] ascensoALaColinaConPowerLaw(FuncionMultiDim f, double[] x, double alpha) {
 
         double[] y = x.clone();
 
@@ -91,9 +86,7 @@ public class Metodos {
         return y;
     }
 
-    public static double[] templadoSimulado(FuncionMultiDim f, double[] x, double T){
-        double sigma = .2;
-
+    public static double[] templadoSimulado(FuncionMultiDim f, double[] x, double T, double sigma){
         double[] y = x.clone();
 
         for (int i = 0; i < y.length; i++) {
@@ -104,17 +97,17 @@ public class Metodos {
         double fx = f.f(x);
         double fy = f.f(y);
 
+
         if (fy <= fx  && f.factible(y)) {
             return y;
-        } else if(Metodos.rTemplado.nextDouble() < Math.exp((fy-fx)/T) &&  f.factible(y)){
+        } else if(Metodos.rTemplado.nextDouble() < Math.exp(-((fy-fx))/T) &&  f.factible(y)){
             return y;
         }
 
         return x;
     }
 
-    public static double[] templadoSimuladoConPowerLaw(FuncionMultiDim f, double[] x, double T){
-        double alpha = 2;
+    public static double[] templadoSimuladoConPowerLaw(FuncionMultiDim f, double[] x, double T, double alpha){
 
         double[] y = x.clone();
 
@@ -128,7 +121,7 @@ public class Metodos {
 
         if (fy <= fx  && f.factible(y)) {
             return y;
-        } else if(Metodos.rTemplado.nextDouble() < Math.exp((fy-fx)/T) &&  f.factible(y)){
+        } else if(Metodos.rTemplado.nextDouble() < Math.exp(-((fy-fx))/T) &&  f.factible(y)){
             return y;
         }
 
@@ -137,7 +130,7 @@ public class Metodos {
 
     public static double enfriamientoSigmoide(double t, double N, double r){
         // r debe ser mayor que 0 es cuan "recta" es la función, siendo 1 muy recta, y cercana a cero muy curva.
-        return (1/(1+Math.exp((t-N/2)/(N*r)))  - 1/(1+Math.exp((N/2)/(N*r)))  )*(( ( 1 - 1/N ) /(1/(1+Math.exp((-1000)/(N*r))) - 1/(1+Math.exp((N/2)/(N*r))) ))) + 1/N;
+        return (1/(1+Math.exp((t-N/2)/(N*r)))  - 1/(1+Math.exp((N/2)/(N*r)))  )*(( ( 1 - 1/N ) /(1/(1+Math.exp((-N/2)/(N*r))) - 1/(1+Math.exp((N/2)/(N*r))) ))) + 1/N;
     }
 
     public static double enfriamientoLineal(double t, double N){
@@ -146,7 +139,7 @@ public class Metodos {
 
     public static double enfriamientoNewton(double t, double N, double r){
         // r debe sec cercano al log de N para que al final la probabilidad en t=N sea de 1/N
-        return Math.exp(-t * r / N);
+        return Math.exp((-t /(N*r*2))) * (1-1/N)/(1-Math.exp((-1/(r*2)))) + 1/N;
     }
 
 
@@ -188,7 +181,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoGradienteDescendente(FuncionMultiDimDiff f, int experimentos, int iteraciones, int dimensiones, String archivo){
+    public static void experimentoGradienteDescendente(FuncionMultiDimDiff f, int experimentos, int iteraciones, int dimensiones, String archivo, double h){
         try {
             double[][] resultados = new double[experimentos][iteraciones];
             File archivoresultados = new File(archivo);
@@ -204,7 +197,7 @@ public class Metodos {
                 double[] x = new double[dimensiones];
                 f.inicializar(x);
                 for (int j = 0; j < iteraciones; j++) {
-                    x = gradienteDescendente(f, x);
+                    x = gradienteDescendente(f, x, h);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -225,7 +218,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoGradienteDescendenteConMomentum(FuncionMultiDimDiff f, int experimentos, int iteraciones, int dimensiones, String archivo){
+    public static void experimentoGradienteDescendenteConMomentum(FuncionMultiDimDiff f, int experimentos, int iteraciones, int dimensiones, String archivo, double h, double m){
         try {
             double[][] resultados = new double[experimentos][iteraciones];
             File archivoresultados = new File(archivo);
@@ -245,7 +238,7 @@ public class Metodos {
                     delta[d] = 0;
                 }
                 for (int j = 0; j < iteraciones; j++) {
-                    x = gradienteDescendenteConMomentum(f, delta, x);
+                    x = gradienteDescendenteConMomentum(f, delta, x, h, m);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -266,7 +259,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoAscensoALaColina(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+    public static void experimentoAscensoALaColina(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo, double sigma){
         try {
             double[][] resultados = new double[experimentos][iteraciones];
             File archivoresultados = new File(archivo);
@@ -282,7 +275,7 @@ public class Metodos {
                 double[] x = new double[dimensiones];
                 f.inicializar(x);
                 for (int j = 0; j < iteraciones; j++) {
-                    x = ascensoALaColina(f, x);
+                    x = ascensoALaColina(f, x,sigma);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -303,7 +296,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoAscensoALaColinaConPowerLaw(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+    public static void experimentoAscensoALaColinaConPowerLaw(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo, double alpha){
         try {
             double[][] resultados = new double[experimentos][iteraciones];
             File archivoresultados = new File(archivo);
@@ -319,7 +312,7 @@ public class Metodos {
                 double[] x = new double[dimensiones];
                 f.inicializar(x);
                 for (int j = 0; j < iteraciones; j++) {
-                    x = ascensoALaColinaConPowerLaw(f, x);
+                    x = ascensoALaColinaConPowerLaw(f, x, alpha);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -340,7 +333,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoTempladoSimuladoSigmoide(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+    public static void experimentoTempladoSimuladoSigmoide(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo, double sigma){
         //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
         try {
             double[][] resultados = new double[experimentos][iteraciones];
@@ -359,7 +352,7 @@ public class Metodos {
                 double T = 1;
                 for (int j = 0; j < iteraciones; j++) {
                     T = enfriamientoSigmoide(j,iteraciones,coeficienteDeTemperatura);
-                    x = templadoSimulado(f, x, T);
+                    x = templadoSimulado(f, x, T, sigma);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -380,7 +373,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoTempladoSimuladoLineal(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+    public static void experimentoTempladoSimuladoLineal(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo, double sigma){
         //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
         try {
             double[][] resultados = new double[experimentos][iteraciones];
@@ -399,7 +392,7 @@ public class Metodos {
                 double T = 1;
                 for (int j = 0; j < iteraciones; j++) {
                     T = enfriamientoLineal(j,iteraciones);
-                    x = templadoSimulado(f, x, T);
+                    x = templadoSimulado(f, x, T, sigma);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -419,7 +412,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoTempladoSimuladoNewton(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+    public static void experimentoTempladoSimuladoNewton(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo, double sigma){
         //sugerido: r = log(N) para que la temperatura de la última iteración sea 1/N.
         try {
             double[][] resultados = new double[experimentos][iteraciones];
@@ -438,7 +431,7 @@ public class Metodos {
                 double T = 1;
                 for (int j = 0; j < iteraciones; j++) {
                     T = enfriamientoNewton(j,iteraciones,coeficienteDeTemperatura);
-                    x = templadoSimulado(f, x, T);
+                    x = templadoSimulado(f, x, T, sigma);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -460,7 +453,7 @@ public class Metodos {
     }
 
 
-    public static void experimentoTempladoSimuladoPLSigmoide(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+    public static void experimentoTempladoSimuladoPLSigmoide(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo, double alpha){
         //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
         try {
             double[][] resultados = new double[experimentos][iteraciones];
@@ -479,7 +472,7 @@ public class Metodos {
                 double T = 1;
                 for (int j = 0; j < iteraciones; j++) {
                     T = enfriamientoSigmoide(j,iteraciones,coeficienteDeTemperatura);
-                    x = templadoSimuladoConPowerLaw(f, x, T);
+                    x = templadoSimuladoConPowerLaw(f, x, T, alpha);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -500,7 +493,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoTempladoSimuladoPLLineal(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo){
+    public static void experimentoTempladoSimuladoPLLineal(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, String archivo, double alpha){
         //sugerido: 0 < coeficienteDeTemperatura <= 1, siendo 1 casi una linea recta, y entre más próximo a 0, más curva.
         try {
             double[][] resultados = new double[experimentos][iteraciones];
@@ -519,7 +512,7 @@ public class Metodos {
                 double T = 1;
                 for (int j = 0; j < iteraciones; j++) {
                     T = enfriamientoLineal(j,iteraciones);
-                    x = templadoSimuladoConPowerLaw(f, x, T);
+                    x = templadoSimuladoConPowerLaw(f, x, T, alpha);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -540,7 +533,7 @@ public class Metodos {
         }
     }
 
-    public static void experimentoTempladoSimuladoPLNewton(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo){
+    public static void experimentoTempladoSimuladoPLNewton(FuncionMultiDim f, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperatura, String archivo, double alpha){
         //sugerido: r = log(N) para que la temperatura de la última iteración sea 1/N.
         try {
             double[][] resultados = new double[experimentos][iteraciones];
@@ -559,7 +552,7 @@ public class Metodos {
                 double T = 1;
                 for (int j = 0; j < iteraciones; j++) {
                     T = enfriamientoNewton(j,iteraciones,coeficienteDeTemperatura);
-                    x = templadoSimuladoConPowerLaw(f, x, T);
+                    x = templadoSimuladoConPowerLaw(f, x, T,alpha);
                     resultados[i][j] = f.f(x);
                 }
 
@@ -581,21 +574,21 @@ public class Metodos {
     }
 
 
-    public static void conjuntoDeExperimentos(FuncionMultiDimDiff funcion, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperaturaSigmoide, double coeficienteDeTemperaturaNewton, String nombreFuncion){
+    public static void conjuntoDeExperimentos(FuncionMultiDimDiff funcion, int experimentos, int iteraciones, int dimensiones, double coeficienteDeTemperaturaSigmoide, double coeficienteDeTemperaturaNewton, String nombreFuncion, double h, double m, double sigma, double alpha){
 
         System.out.println("Ejecutando: " + nombreFuncion);
 
-        experimentoGradienteDescendente(funcion,experimentos,iteraciones,dimensiones,"resultadosGradienteDesc"+nombreFuncion+".txt");
-        experimentoGradienteDescendenteConMomentum(funcion,experimentos,iteraciones,dimensiones,"resultadosGradienteDescMomentum"+nombreFuncion+".txt");
-        experimentoAscensoALaColina(funcion,experimentos,iteraciones,dimensiones,"resultadosAscensoColina"+nombreFuncion+".txt");
-        experimentoAscensoALaColinaConPowerLaw(funcion,experimentos,iteraciones,dimensiones,"AscensoColinaPL"+nombreFuncion+".txt");
+        //experimentoGradienteDescendente(funcion,experimentos,iteraciones,dimensiones,nombreFuncion+"resultadosGradienteDesc"+".txt",h);
+        //experimentoGradienteDescendenteConMomentum(funcion,experimentos,iteraciones,dimensiones,nombreFuncion+"resultadosGradienteDescMomentum"+".txt",h,m);
+        experimentoAscensoALaColina(funcion,experimentos,iteraciones,dimensiones,nombreFuncion+"resultadosAscensoColina"+".txt",sigma);
+        experimentoAscensoALaColinaConPowerLaw(funcion,experimentos,iteraciones,dimensiones,nombreFuncion+"AscensoColinaPL"+".txt",alpha);
 
-        experimentoTempladoSimuladoSigmoide(funcion,experimentos,iteraciones,dimensiones,0.2,"resultadosTSSigmoide"+nombreFuncion+".txt");
-        experimentoTempladoSimuladoLineal(funcion,experimentos,iteraciones,dimensiones,"resultadosTSLineal"+nombreFuncion+".txt");
-        experimentoTempladoSimuladoNewton(funcion,experimentos,iteraciones,dimensiones,Math.log(iteraciones),"resultadosTSNewton"+nombreFuncion+".txt");
-        experimentoTempladoSimuladoPLSigmoide(funcion,experimentos,iteraciones,dimensiones,0.2,"resultadosTSPLSigmoide"+nombreFuncion+".txt");
-        experimentoTempladoSimuladoPLLineal(funcion,experimentos,iteraciones,dimensiones,"resultadosTSPLLineal"+nombreFuncion+".txt");
-        experimentoTempladoSimuladoPLNewton(funcion,experimentos,iteraciones,dimensiones,Math.log(iteraciones),"resultadosTSPLNewton"+nombreFuncion+".txt");
+        experimentoTempladoSimuladoSigmoide(funcion,experimentos,iteraciones,dimensiones,0.1,nombreFuncion+"resultadosTSSigmoide"+".txt",sigma);
+        experimentoTempladoSimuladoLineal(funcion,experimentos,iteraciones,dimensiones,nombreFuncion+"resultadosTSLineal"+".txt",sigma);
+        experimentoTempladoSimuladoNewton(funcion,experimentos,iteraciones,dimensiones,0.1,nombreFuncion+"resultadosTSNewton"+".txt",sigma);
+        experimentoTempladoSimuladoPLSigmoide(funcion,experimentos,iteraciones,dimensiones,0.1,nombreFuncion+"resultadosTSPLSigmoide"+".txt",alpha);
+        experimentoTempladoSimuladoPLLineal(funcion,experimentos,iteraciones,dimensiones,nombreFuncion+"resultadosTSPLLineal"+".txt",alpha);
+        experimentoTempladoSimuladoPLNewton(funcion,experimentos,iteraciones,dimensiones,0.1,nombreFuncion+"resultadosTSPLNewton"+".txt",alpha);
     }
 
     public static void main(String[] args) {
@@ -604,41 +597,58 @@ public class Metodos {
         int iteraciones = 1000;
         int dimensiones = 2;
 
-        Cuadratica cuadratica = new Cuadratica();
-        experimentoGradienteNewton(cuadratica, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Cuadratica" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(cuadratica,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Cuadratica" + dimensiones + "d");
+        Cuadratica cuadratica = new Cuadratica(); //prueba
+        Rastrigin rastrigin = new Rastrigin(); // -5.12, 5.12
+        Grienwank grienwank = new Grienwank(); // -600,600
+        Schwefel schwefel = new Schwefel(); // -500,500
+        Rosenbrock rosenbrock = new Rosenbrock(); //-5,10
 
-        Rastrigin rastrigin = new Rastrigin();
-        experimentoGradienteNewton(rastrigin, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rastrigin" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(rastrigin,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rastrigin" + dimensiones + "d");
+        double h,m,sigma,alpha; // h -> paso del gradiente, m -> momentum gradiente, sigma -> st. deviation gaussiana, alpha -> power law
 
-        Grienwank grienwank = new Grienwank();
-        conjuntoDeExperimentos(grienwank,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Grienwank" + dimensiones + "d");
+        //a menor alpha mas grandes los numeros que se generan con power law
+/*
+        h = 0.6;m = 0.7;sigma = 0.2;alpha = 7;
+        //conjuntoDeExperimentos(cuadratica,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Cuadratica" + dimensiones + "d",h,m,sigma,alpha);
+        h = 0.6;m = 0.7;sigma = 0.2;alpha = 7;
+        conjuntoDeExperimentos(rastrigin,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rastrigin" + dimensiones + "d",h,m,sigma,alpha);
+        h = 1;m = 1;sigma = 4;alpha = 1.8;
+        conjuntoDeExperimentos(grienwank,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Grienwank" + dimensiones + "d",h,m,sigma,alpha);
+        h = 1;m = 1;sigma = 3;alpha = 1.9;
+        conjuntoDeExperimentos(schwefel,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Schwefel" + dimensiones + "d",h,m,sigma,alpha);
+        h = 0.00005;m = 0.09;sigma = 0.2;alpha = 7;
+        conjuntoDeExperimentos(rosenbrock,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rosenbrock" + dimensiones + "d",h,m,sigma,alpha);
 
-        Schuefel schuefel = new Schuefel();
-        experimentoGradienteNewton(schuefel, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Schuefel" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(schuefel,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Schuefel" + dimensiones + "d");
+*/
+        //experimentoGradienteNewton(cuadratica, experimentos, iteraciones, dimensiones, "Cuadratica" + dimensiones + "d" + "resultadosGradienteNewton" + ".txt");
+        experimentoGradienteNewton(rastrigin, experimentos, iteraciones, dimensiones, "Rastrigin" + dimensiones + "d" +  "resultadosGradienteNewton" + ".txt");
+        //experimentoGradienteNewton(schwefel, experimentos, iteraciones, dimensiones, "Schwefel" + dimensiones + "d" +"resultadosGradienteNewton" +  ".txt");
+        //experimentoGradienteNewton(rosenbrock, experimentos, iteraciones, dimensiones, "Rosenbrock" + dimensiones + "d" + "resultadosGradienteNewton" + ".txt");
 
-        Rosenbrock rosenbrock = new Rosenbrock();
-        experimentoGradienteNewton(rosenbrock, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rosenbrock" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(rosenbrock,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rosenbrock" + dimensiones + "d");
 
-        experimentos = 30;
+/*
+        experimentos = 100;
         iteraciones = 10000;
         dimensiones = 10;
 
-        experimentoGradienteNewton(cuadratica, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Cuadratica" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(cuadratica,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Cuadratica" + dimensiones + "d");
+        h = 0.6;m = 0.7;sigma = 0.2;alpha = 7;
+        //conjuntoDeExperimentos(cuadratica,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Cuadratica" + dimensiones + "d",h,m,sigma,alpha);
+        h = 0.6;m = 0.7;sigma = 0.2;alpha = 7;
+        conjuntoDeExperimentos(rastrigin,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rastrigin" + dimensiones + "d",h,m,sigma,alpha);
+        h = 1;m = 1;sigma = 4;alpha = 1.8;
+        conjuntoDeExperimentos(grienwank,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Grienwank" + dimensiones + "d",h,m,sigma,alpha);
+        h = 1;m = 1;sigma = 3;alpha = 1.9;
+        conjuntoDeExperimentos(schwefel,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Schwefel" + dimensiones + "d",h,m,sigma,alpha);
+        h = 0.00005;m = 0.09;sigma = 0.2;alpha = 7;
+        conjuntoDeExperimentos(rosenbrock,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rosenbrock" + dimensiones + "d",h,m,sigma,alpha);
+*/
 
-        experimentoGradienteNewton(rastrigin, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rastrigin" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(rastrigin,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rastrigin" + dimensiones + "d");
+        //experimentoGradienteNewton(cuadratica, experimentos, iteraciones, dimensiones, "Cuadratica" + dimensiones + "d" +"resultadosGradienteNewton" +  ".txt");
 
-        conjuntoDeExperimentos(grienwank,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Grienwank" + dimensiones + "d");
+        /*
+        experimentoGradienteNewton(rastrigin, experimentos, iteraciones, dimensiones, "Rastrigin" + dimensiones + "d" + "resultadosGradienteNewton" + ".txt");
+        experimentoGradienteNewton(schuefel, experimentos, iteraciones, dimensiones, "Schwefel" + dimensiones + "d" + "resultadosGradienteNewton" +  ".txt");
+        experimentoGradienteNewton(rosenbrock, experimentos, iteraciones, dimensiones, "Rosenbrock" + dimensiones + "d" + "resultadosGradienteNewton" + ".txt");
+*/
 
-        experimentoGradienteNewton(schuefel, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Schuefel" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(schuefel,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Schuefel" + dimensiones + "d");
-
-        experimentoGradienteNewton(rosenbrock, experimentos, iteraciones, dimensiones, "resultadosGradienteNewton" + "Rosenbrock" + dimensiones + "d" + ".txt");
-        conjuntoDeExperimentos(rosenbrock,experimentos,iteraciones,dimensiones,0.2,Math.log(iteraciones),"Rosenbrock" + dimensiones + "d");
     }
 }

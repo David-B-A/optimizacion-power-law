@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Grienwank implements FuncionMultiDimDiff {
-    public double pen[] = {5,5,5,5,5,5,5,5,5,5};
+    public double pen[] = {90,90,90,90,90,90,90,90,90,90};
 
     public double xmin = -600;
     public double xmax = 600;

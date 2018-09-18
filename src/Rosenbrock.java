@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Rosenbrock implements FuncionMultiDimDiff2 {
-    public double pen[] = {5,5,5,5,5,5,5,5,5,5};
+    public double pen[] = {3,3,3,3,3,3,3,3,3,3};
 
     public double xmin = -5;
     public double xmax = 10;
@@ -68,4 +68,6 @@ public class Rosenbrock implements FuncionMultiDimDiff2 {
     public double determinanteDelHessiano(double[] x){
         return ManejadorDeMatrices.determinante(hessiano(x));
     }
+
+
 }

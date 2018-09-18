@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Rastrigin implements FuncionMultiDimDiff2 {
-    public double pen[] = {5,5,5,5,5,5,5,5,5,5};
+    public double pen[] = {2,2,2,2,2,2,2,2,2,2};
 
     public double xmin = -5.12;
     public double xmax = 5.12;
